@@ -1,0 +1,246 @@
+<html>
+
+<head>
+
+<style>
+
+*{
+
+-webkit-transform-style:preserve-3d;
+	height:auto;
+	width:auto;
+	margin:0;
+}
+
+#body{
+background-color:black;
+	margin:110px;
+	width:260px;
+	-webkit-transform:rotateX(-50deg) scale(1.5);
+
+
+}
+
+#screen{
+	border:5px solid gray;
+	text-align:center;
+	background-color:green;
+
+	width:96.6%;
+	height:50px;
+}
+
+#screen input[type=text]{
+	margin:8px 3px;
+	text-align:center;
+	width:100px;
+	height:35px;
+	border:2px solid black;
+	background:white;
+}
+
+
+
+#btns input[type=radio]{
+
+display:none;
+
+}
+
+#btns{
+	border:5px solid gray;
+	border-top:0px solid gray;
+	background-color:white;
+	opacity:.7;
+	height:170px;
+
+}
+
+#btns label{
+color:white;
+background-color:black;
+padding:5px 8px;
+float:right;
+margin:5px;
+}
+
+#btns input[type=radio]:checked + label{
+color:black;
+background-color:silver;
+
+
+}
+
+
+#btns input[type=submit]{
+	float:right;
+	color:white;
+	background-color:green;
+	padding:10px 18px;
+	width:75px;
+	border:none;
+	margin:5px 5px;
+}
+
+
+#symbol{
+	color:black;
+	font-size:25px;
+	background-color:white;
+	width:30px;
+	height:35px;
+	margin-top:8px;
+	margin-left:-4px;
+	position:relative;
+	border-bottom:2px solid black;
+	border-top:2px solid black;
+	border-left:0px solid black;
+	border-right:0px solid black;
+	float:left;
+}
+
+#show{
+	padding:2px;
+	position:absolute;
+	width:90%;
+	background-color:;
+	opacity:.8;
+	z-index:1;
+
+	bottom:5px;
+	left:15px;
+	}
+
+#bedmass{
+float:right;
+	}
+
+equel{
+	
+		position:absolute;
+	bottom:0;
+	right:0;
+	
+	}
+
+	
+</style>
+</head>
+
+<body>
+
+<?php
+
+$a=$_POST['fst'];
+
+$b=$_POST['snd'];
+
+$solution=$_POST['radio'];
+
+?>
+
+
+<div id="body">
+
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+<div id="screen">
+	<input type="text" id="ac" name="fst" style="float:left; border-right:0px solid black; margin-left:10px;">
+	
+	<button id="symbol">&</button>
+	<input type="text" id="dc" name="snd" style="float:left; border-left:0px solid black; margin-left:0px; ">
+
+
+</div>
+
+
+<div id="btns">
+
+<div id="bedmass">
+
+<table>
+<tr>
+<td>
+<input type="radio" name="radio" value="mul" id="mul">
+<label for="mul" style="padding:6px;"  onclick="document.getElementById('symbol').innerHTML=('x')">x</label>
+
+<br/>
+<input type="radio" name="radio" value="div" id="div">
+<label for="div"  onclick="document.getElementById('symbol').innerHTML=('/')">/</label>
+<br/><br/>
+<input type="radio" name="radio" value="sub" id="sub">
+<label for="sub"  onclick="document.getElementById('symbol').innerHTML=('-')">-</label>
+<br/><br/>
+
+</td>
+
+
+<td>
+<label  onclick="cls()">AC</label>
+<br/>
+<input type="radio" name="radio" value="add" id="add">
+<label for="add" style="padding-left:15px; padding-right:15px;" onclick="document.getElementById('symbol').innerHTML=('+')"><br/>+<br/><br/></label>
+</td>
+</tr>
+</table>
+<tr>
+
+<td>
+<input type="submit" onclick="submit()" value="=="/>
+</td>
+</tr>
+
+</div>
+</form>
+
+<?php 
+switch($solution){
+	
+	case "mul":
+		
+		echo $a*$b;
+	
+	break;
+	
+	case  "add":
+		
+		echo $a+$b;
+	
+	break;
+	
+	case "sub":
+	
+		echo $a-$b;
+		
+	break;
+	
+	case "div":
+	
+		echo $a/$b;	
+}
+?>
+</div>
+</div>
+
+<script>
+
+function cls(){
+	
+	document.getElementById("symbol").innerHTML=('&')
+	document.getElementById("ac").value=(' ')
+	document.getElementById("dc").value=(' ')
+	
+	
+}
+function submit(){
+	
+	document.getElementById("symbol").innerHTML=('&');
+	document.getElementById("ac").value=(' $a');
+	document.getElementById("dc").value=(' ');
+	
+	
+}
+
+
+</script>
+</body>
+</html>
